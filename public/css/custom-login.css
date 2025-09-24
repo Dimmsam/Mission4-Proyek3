@@ -1,0 +1,32 @@
+/* Custom styles for login page */
+.bg-login-image {
+    background: url("../img/undraw_posting_photo.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Center login form vertically and horizontally */
+body.bg-gradient-primary {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+    padding: 20px;
+}
+
+.card {
+    border-radius: 15px !important;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.07) !important;
+}
+
+.card-body {
+    padding: 3rem !important;
+}
