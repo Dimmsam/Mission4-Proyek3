@@ -2,8 +2,21 @@
 
 /* Active Menu State */
 .nav-item.active .nav-link {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    border-radius: 0.35rem;
+    font-weight: 600;
+}
+
+.nav-item.active .nav-link i {
+    color: #fff !important;
+}
+
+/* Hover effect untuk menu yang tidak active */
+.nav-item:not(.active) .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     border-radius: 0.35rem;
+    transition: all 0.3s ease;
 }
 
 /* Course Selection Checkbox */
@@ -38,6 +51,8 @@
 .alert {
     border: none;
     border-radius: 0.5rem;
+    position: relative;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .alert-success {

@@ -156,20 +156,14 @@
                 <div class="container-fluid">
 
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success fade show" role="alert">
                             <strong>Success!</strong> {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                     @endif
 
                     @if(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger fade show" role="alert">
                             <strong>Error!</strong> {{ session('error') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                     @endif
 
@@ -238,6 +232,32 @@
     <!-- Mission 4 JavaScript-->
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/course-selection.js') }}"></script>
+
+    <!-- Auto-hide Notifications with setTimeout -->
+    <script>
+        // Mission 4 - Implementasi setTimeout untuk Auto-hide Notifications
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get semua alert elements
+            const alerts = document.querySelectorAll('.alert');
+            
+            alerts.forEach(function(alert) {
+                // Auto-hide setelah 4 detik dengan fade out animation
+                setTimeout(function() {
+                    // Add fade-out class dengan CSS transition
+                    alert.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                    alert.style.opacity = '0';
+                    alert.style.transform = 'translateY(-10px)';
+                    
+                    // Remove element dari DOM setelah animation selesai
+                    setTimeout(function() {
+                        if (alert.parentNode) {
+                            alert.parentNode.removeChild(alert);
+                        }
+                    }, 500); // Tunggu animation selesai
+                }, 4000); // Auto-hide setelah 4 detik
+            });
+        });
+    </script>
 
     @stack('scripts')
 

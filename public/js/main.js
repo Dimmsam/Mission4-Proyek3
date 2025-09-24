@@ -10,17 +10,34 @@ function querySelector(selector) {
 // Active Menu State
 function setActiveMenu() {
     const currentPath = window.location.pathname;
-    const menuLinks = document.querySelectorAll(".nav-link");
+    const menuItems = document.querySelectorAll(".nav-item");
 
-    menuLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (
-            currentPath.includes(href) ||
-            (currentPath === "/" && href.includes("dashboard"))
-        ) {
-            link.parentElement.classList.add("active");
-        } else {
-            link.parentElement.classList.remove("active");
+    menuItems.forEach((item) => {
+        const link = item.querySelector(".nav-link");
+        if (link) {
+            const href = link.getAttribute("href");
+
+            // Remove active class first
+            item.classList.remove("active");
+
+            // Check if current path matches the menu item
+            if (
+                currentPath === href ||
+                (currentPath.includes("/admin/students") &&
+                    href.includes("/admin/students")) ||
+                (currentPath.includes("/admin/courses") &&
+                    href.includes("/admin/courses")) ||
+                (currentPath.includes("/student/courses") &&
+                    href.includes("/student/courses") &&
+                    !href.includes("my-courses")) ||
+                (currentPath.includes("/student/my-courses") &&
+                    href.includes("/student/my-courses")) ||
+                (currentPath.includes("/dashboard") &&
+                    href.includes("/dashboard")) ||
+                (currentPath === "/" && href.includes("dashboard"))
+            ) {
+                item.classList.add("active");
+            }
         }
     });
 }
@@ -71,6 +88,41 @@ function showDeleteConfirmation(type, name, callback) {
             document.body.removeChild(modal);
         }
     });
+}
+
+// Utility function untuk create auto-hide notification programmatically
+function showNotification(message, type = "success", duration = 4000) {
+    const container = document.querySelector(".container-fluid");
+    if (!container) return;
+
+    const alertDiv = document.createElement("div");
+    alertDiv.className = `alert alert-${type} fade show`;
+    alertDiv.setAttribute("role", "alert");
+
+    const typeText =
+        type === "success"
+            ? "Success!"
+            : type === "danger"
+            ? "Error!"
+            : "Info!";
+    alertDiv.innerHTML = `<strong>${typeText}</strong> ${message}`;
+
+    // Insert at the beginning of container
+    container.insertBefore(alertDiv, container.firstChild);
+
+    // Auto-hide dengan animation
+    setTimeout(function () {
+        alertDiv.style.transition =
+            "opacity 0.5s ease-out, transform 0.5s ease-out";
+        alertDiv.style.opacity = "0";
+        alertDiv.style.transform = "translateY(-10px)";
+
+        setTimeout(function () {
+            if (alertDiv.parentNode) {
+                alertDiv.parentNode.removeChild(alertDiv);
+            }
+        }, 500);
+    }, duration);
 }
 
 // Initialize saat DOM loaded

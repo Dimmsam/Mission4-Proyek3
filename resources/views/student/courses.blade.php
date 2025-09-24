@@ -7,8 +7,6 @@
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 
-@extends('layouts.admin')
-
 @section('title', 'Available Courses')
 
 @section('content')
@@ -67,9 +65,6 @@
                             <a href="{{ route('student.my-courses') }}" class="btn btn-secondary">
                                 <i class="fas fa-graduation-cap"></i> View My Courses
                             </a>
-                            <button type="button" class="btn btn-info btn-sm ml-2" onclick="debugCourseSelection()">
-                                <i class="fas fa-bug"></i> Debug
-                            </button>
                         </div>
                     </form>
                 </div>
@@ -109,18 +104,6 @@
                         <div class="col-auto">
                             <i class="fas fa-calculator fa-2x text-gray-300"></i>
                         </div>
-                    </div>
-                    
-                    <hr>
-                    <div class="text-xs text-muted mb-2">Selected Courses:</div>
-                    <div id="selectedCoursesList">
-                        <p class="text-muted">No courses selected</p>
-                    </div>
-                    
-                    <hr>
-                    <div class="text-xs text-muted">
-                        <i class="fas fa-info-circle"></i> 
-                        Recommended maximum: 24 SKS per semester
                     </div>
                 </div>
             </div>
